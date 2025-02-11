@@ -485,8 +485,9 @@ const styles = StyleSheet.create({
     width: '60%',
     flexDirection: 'row',
   },
-  creditAgreementslabel: {
-    width: '45%',
+
+  creditAgreementsfirstlabel: {
+    width: '32%',
     fontSize: 9,
     color: '#333',
     fontWeight: 'bold',
@@ -496,16 +497,25 @@ const styles = StyleSheet.create({
   },
   creditAgreementsfirstvalue: {
     backgroundColor: 'white',
-    width: '65%',
+    width: '68%',
     fontSize: 9,
     color: '#666',
     padding: 4,
     borderTop: '1px solid #E0E0E0',
 
   },
+  creditAgreementslabel: {
+    width: '55%',
+    fontSize: 9,
+    color: '#333',
+    fontWeight: 'bold',
+    backgroundColor: '#F5F5F5',
+    padding: 4,
+    borderBottom: '1px solid white',
+  },
   creditAgreementsvalue: {
     backgroundColor: 'white',
-    width: '55%',
+    width: '45%',
     fontSize: 9,
     color: '#666',
     padding: 4,
@@ -1614,7 +1624,7 @@ const CreditReport = () => (
 
         <View style={styles.creditAgreementsGrid}>
           <View style={styles.creditAgreementsfirstRow}>
-            <Text style={styles.creditAgreementslabel}>Subscriber Name</Text>
+            <Text style={styles.creditAgreementsfirstlabel}>Subscriber Name</Text>
             <Text style={styles.creditAgreementsfirstvalue}>FCR123456789</Text>
           </View>
           <View style={styles.creditAgreementsRow}>
@@ -1622,7 +1632,7 @@ const CreditReport = () => (
             <Text style={styles.creditAgreementsvalue}>UTN987654321</Text>
           </View>
           <View style={styles.creditAgreementsfirstRow}>
-            <Text style={styles.creditAgreementslabel}>Effective Date</Text>
+            <Text style={styles.creditAgreementsfirstlabel}>Effective Date</Text>
             <Text style={styles.creditAgreementsfirstvalue}>Doe</Text>
           </View>
           <View style={styles.creditAgreementsRow}>
@@ -1630,7 +1640,7 @@ const CreditReport = () => (
             <Text style={styles.creditAgreementsvalue}>John James</Text>
           </View>
           <View style={styles.creditAgreementsfirstRow}>
-            <Text style={styles.creditAgreementslabel}>Type of Credit Facilit</Text>
+            <Text style={styles.creditAgreementsfirstlabel}>Type of Credit Facilit</Text>
             <Text style={styles.creditAgreementsfirstvalue}>John</Text>
           </View>
           <View style={styles.creditAgreementsRow}>
@@ -1638,7 +1648,7 @@ const CreditReport = () => (
             <Text style={styles.creditAgreementsvalue}>12345678901</Text>
           </View>
           <View style={styles.creditAgreementsfirstRow}>
-            <Text style={styles.creditAgreementslabel}>Credit / Debit</Text>
+            <Text style={styles.creditAgreementsfirstlabel}>Credit / Debit</Text>
             <Text style={styles.creditAgreementsfirstvalue}>01/01/1980</Text>
           </View>
           <View style={styles.creditAgreementsRow}>
@@ -1646,7 +1656,7 @@ const CreditReport = () => (
             <Text style={styles.creditAgreementsvalue}>Male</Text>
           </View>
           <View style={styles.creditAgreementsfirstRow}>
-            <Text style={styles.creditAgreementslabel}>Current Balance </Text>
+            <Text style={styles.creditAgreementsfirstlabel}>Current Balance </Text>
             <Text style={styles.creditAgreementsfirstvalue}>Single</Text>
           </View>
           <View style={styles.creditAgreementsRow}>
@@ -1654,7 +1664,7 @@ const CreditReport = () => (
             <Text style={styles.creditAgreementsvalue}>2</Text>
           </View>
           <View style={styles.creditAgreementsfirstRow}>
-            <Text style={styles.creditAgreementslabel}>Arrear Amount</Text>
+            <Text style={styles.creditAgreementsfirstlabel}>Arrear Amount</Text>
             <Text style={styles.creditAgreementsfirstvalue}>NIN123456789</Text>
           </View>
           <View style={styles.creditAgreementsRow}>
@@ -1662,7 +1672,7 @@ const CreditReport = () => (
             <Text style={styles.creditAgreementsvalue}>PEN987654321</Text>
           </View>
           <View style={styles.creditAgreementsfirstRow}>
-            <Text style={styles.creditAgreementslabel}>Facility Classification</Text>
+            <Text style={styles.creditAgreementsfirstlabel}>Facility Classification</Text>
             <Text style={styles.creditAgreementsfirstvalue}>DRV123456789</Text>
           </View>
           <View style={styles.creditAgreementsRow}>
@@ -1671,7 +1681,7 @@ const CreditReport = () => (
           </View>
         
           <View style={styles.creditAgreementsfirstRow}>
-            <Text style={styles.creditAgreementslabel}>Account Status</Text>
+            <Text style={styles.creditAgreementsfirstlabel}>Account Status</Text>
             <Text style={styles.creditAgreementsfirstvalue}>Nigerian</Text>
           </View>
           <View style={styles.creditAgreementsRow}>
@@ -1680,7 +1690,7 @@ const CreditReport = () => (
           </View>
       
           <View style={styles.creditAgreementsfirstRow}>
-            <Text style={styles.creditAgreementslabel}>Repayment Frequency</Text>
+            <Text style={styles.creditAgreementsfirstlabel}>Repayment Frequency</Text>
             <Text style={styles.creditAgreementsfirstvalue}>+234 1 234 5678</Text>
           </View>
      
