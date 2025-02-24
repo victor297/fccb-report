@@ -1,122 +1,55 @@
-import React from 'react';
-import { Document, Page, View, Text, Image, StyleSheet, Font } from '@react-pdf/renderer';
+import { useState, useEffect } from 'react';
+import { PDFViewer, BlobProvider } from '@react-pdf/renderer';
+import CreditReportSection from './CreditReportSection';
 
-// Register fonts if necessary
-// Font.register({
-//   family: 'YourFont',
-//   src: 'path/to/font.ttf',
-// });
+const App = () => {
+  const [pdfBlob, setPdfBlob] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-const styles = StyleSheet.create({
-  container: {
-    width: '100%',
-  },
-  padding: {
-    paddingLeft: 10,
-    paddingRight: 10,
-    paddingTop: 10,
-    paddingBottom: 10,
-  },
-  table: {
-    borderWidth: 0,
-    backgroundColor: '#FFFFFF',
-    margin: '0 auto',
-    width: '100%',
-  },
-  cell: {
-    border: '1px solid #000',
-    padding: 5,
-  },
-  title: {
-    fontSize: 8,
-    textAlign: 'right',
-    marginLeft: -200,
-    verticalAlign:'middle'
-  },
-  header: {
-    textAlign: 'left',
-  },
-  sectionTitle: {
-    fontSize: 12,
-    textAlign: 'left',
-  },
-  details: {
-    textAlign: 'left',
-  },
-  imageCell: {
-    textAlign: 'center',
-    padding: 10,
-  },
-  subjectListHeader: {
-    textAlign: 'left',
-    fontSize: 12,
-  },
-});
+  useEffect(() => {
+    generatePDF();
+  }, []);
 
-const Report = ({ enquiryInput, subjectList }) => {
+  const generatePDF = () => {
+    setLoading(true);
+    const worker = new Worker(new URL('./../../../public/pdfWorker.js', import.meta.url), {
+      type: 'module',
+    });
+
+    worker.postMessage({ totalPages: 500 });
+
+    worker.onmessage = (e) => {
+      setLoading(false);
+      if (e.data.success) {
+        setPdfBlob(URL.createObjectURL(e.data.pdfBlob));
+      } else {
+        console.error('PDF Generation Error:', e.data.error);
+      }
+    };
+  };
+
   return (
-    <Document>
-      <Page size="A4" style={styles.container}>
-        <View style={styles.padding}>
-          <View style={styles.table}>
-            <View style={styles.cell}>
-              <Text style={styles.title}>Nano Report</Text>
-              <Text style={styles.title}>37/37A Raymond Njoku Street, Ikoyi, Lagos, Nigeria</Text>
-              <Text style={styles.title}>Tel No: +234 (1) 453 4908, +234 (909) 114 1981</Text>
-              <Text style={styles.title}>Website: www.firstcentralcreditbureau.com</Text>
-              <Text style={styles.title}>Email: info@firstcentralcreditbureau.com</Text>
-            </View>
+    <div>
+      <h1>PDF Generator</h1>
+      {loading && <p>Generating PDF...</p>}
+      
+      {pdfBlob ? (
+        <iframe src={pdfBlob} width="100%" height="600px" title="PDF Preview"></iframe>
+      ) : (
+        <BlobProvider document={<CreditReportSection totalPages={500} />}>
+          {({ blob, url, loading }) =>
+            loading ? <p>Loading preview...</p> : <iframe src={url} width="100%" height="600px" title="PDF Preview"></iframe>
+          }
+        </BlobProvider>
+      )}
 
-            <View style={styles.cell}>
-              <Text style={styles.sectionTitle}>Enquiry Input Details</Text>
-              <Text>This section includes the user's search input details and matching rate.</Text>
-            </View>
-
-            {enquiryInput.map((input, index) => (
-              <View key={index} style={styles.cell}>
-                <Text style={styles.details}>
-                  <Text>Enquiry Date: {input.EnquiryDate}</Text>
-                </Text>
-                <Text style={styles.details}>
-                  <Text>Enquiry Type: {input.EnquiryType}</Text>
-                </Text>
-                <Text style={styles.details}>
-                  <Text>Subscriber Name: {input.SubscriberName}</Text>
-                </Text>
-                <Text style={styles.details}>
-                  <Text>Subscriber User Name: {input.SubscriberUsername}</Text>
-                </Text>
-                <Text style={styles.details}>
-                  <Text>Enquiry Input: {input.Input}</Text>
-                </Text>
-                <Text style={styles.details}>
-                  <Text>Enquiry Reason: {input.EnquiryReason}</Text>
-                </Text>
-                <Text style={styles.details}>
-                  <Text>Matching Rate: {input.MatchRate}</Text>
-                </Text>
-              </View>
-            ))}
-
-            <View style={styles.cell}>
-              <Text style={styles.subjectListHeader}>Subjects List</Text>
-              {subjectList.map((subject, index) => (
-                <View key={index} style={styles.cell}>
-                  <Text>{subject.ConsumerID}</Text>
-                  <Text>{subject.SearchOutput}</Text>
-                </View>
-              ))}
-            </View>
-
-            <View style={styles.cell}>
-              <Text style={styles.subjectListHeader}>Personal Details</Text>
-              <Text>This section includes the consumer's demographic information.</Text>
-            </View>
-          </View>
-        </View>
-      </Page>
-    </Document>
+      {pdfBlob && (
+        <a href={pdfBlob} download="CreditReport.pdf">
+          <button>Download PDF</button>
+        </a>
+      )}
+    </div>
   );
 };
 
-export default Report;
+export default App;

@@ -1,32 +1,33 @@
 import { Document, Page, Text, View, StyleSheet, Image, Font } from '@react-pdf/renderer';
-import authlogo from "@/assets/logo.png";
-import ArialFont from '@/assets/arial/arial.ttf'; // Ensure this file exists
 
-// Font.register({
-//   family: 'Roboto',
-//   fonts: [
-//     {
-//       src: 'https://fonts.gstatic.com/s/roboto/v27/KFOmCnqEu92Fr1Mu72xKOzY.woff2',
-//     },
-//   ],
-// });
-// Font.register({
-//   family: 'Arial',
-//   src: `./../../assets/arial/arial.ttf`,
-// });
 Font.register({
-  family: 'Arial',
-  src: ArialFont,
-  fontWeight: 'normal',
-  format: 'truetype',
-});
-
+  family: 'Trebuchet',
+  fonts: [
+    {
+      src: `./../../assets/trebuchet/Trebuchet-MS.ttf`
+    },
+    {
+      src: `./../../assets/trebuchet/Trebuchet-MS-Bold.ttf`,
+      fontWeight: 'bold'
+    },
+    {
+      src: `./../../assets/trebuchet/Trebuchet-MS-Italic.ttf`,
+      fontWeight: 'normal',
+      fontStyle: 'italic'
+    },
+    {
+      src: `./../../assets/trebuchet/Trebuchet-MS-Bold-Italic.ttf`,
+      fontWeight: 'bold',
+      fontStyle: 'italic'
+    }
+  ]
+})
 
 const styles = StyleSheet.create({
   page: {
     padding: 30,
     color: '#666',
-    // fontFamily:'Courier'
+    fontFamily:'Trebuchet'
   },
   pageNumber: {
     position: 'absolute',

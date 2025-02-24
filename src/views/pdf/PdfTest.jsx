@@ -14,17 +14,18 @@
 
 import React from 'react';
 import { PDFViewer } from '@react-pdf/renderer';
-import PdfTest2 from './PdfTest2';
-import { data } from '../../test';
-import MyReport from './MyReport';
+// import PdfTest2 from './PdfTest2';
+// import { data } from '../../test';
+// import MyReport from './MyReport';
+import XSCoreConsumerFullCredit from './XSCoreConsumerFullCredit';
 
 const App = () => {
   
   return (
     <div className=' flex justify-center'>
-      <PDFViewer style={{ width: '80%', height: '100vh' }}>
-        {/* <PdfTest2 data={data}/> */}
-        <MyReport/>
+      <PDFViewer style={{ width: '100%', height: '100vh' }}>
+        {/* <MyReport/> */}
+        <XSCoreConsumerFullCredit/>
       </PDFViewer>
     </div>
   );

@@ -7,7 +7,8 @@ import { Link } from 'react-router-dom';
 
 const navigation = [
   { name: 'Login', href: '/auth/login', current: true },
-  { name: 'Team', href: '#', current: false },
+  { name: 'PDF', href: '/pdf', current: false },
+  { name: 'PDF1', href: '/pdf1', current: false },
   { name: 'Projects', href: '#', current: false },
   { name: 'Contact Us', href: '#', current: false },
 ]
