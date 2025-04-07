@@ -2,6 +2,7 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
+import { jwtDecode } from "jwt-decode";
 import authlogo from "@/assets/logo.png";
 import Input from "@/components/input/Input";
 import { useLoginMutation } from "@/redux/api/usersApiSlice";
@@ -19,7 +20,7 @@ const Login = () => {
   } = useForm();
   const [login, { isLoading }] = useLoginMutation();
   const { userInfo } = useSelector((state) => state.auth);
-
+console.log(userInfo,"userInfo")
   useEffect(() => {
     if (userInfo) {
       navigate("/dashboard");
@@ -28,9 +29,19 @@ const Login = () => {
   const onSubmit = async (data) => {
     try {
       const res = await login(data).unwrap();
-      dispatch(setCredentials({ ...res?.token}));
-      navigate("/dashboard");
-      toast.success("Login successful!");
+  
+      console.log(res, "resres");
+  
+      if (res?.[0]?.DataTicket) {
+        const decodedToken = jwtDecode(res?.[0]?.DataTicket); // Decode the token
+        console.log(decodedToken, "decodedToken"); // View the decoded token data
+  
+        dispatch(setCredentials({ ...decodedToken,DataTicket:res?.[0]?.DataTicket })); // Store the decoded data
+        navigate("/dashboard");
+        toast.success("Login successful!");
+      } else {
+        toast.error("Invalid token received!");
+      }
     } catch (error) {
       toast.error(error.data?.message || "Login failed!");
     }

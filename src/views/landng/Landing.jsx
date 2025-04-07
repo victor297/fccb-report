@@ -12,6 +12,7 @@ import {
   FaCheckCircle,
   FaArrowRight,
 } from "react-icons/fa";
+import DataTable from "../../components/table/DataTable";
 
 const Landing = ()=> {
   const features = [
@@ -68,7 +69,7 @@ const Landing = ()=> {
           <p className="text-xl text-gray-500 max-w-2xl mx-auto mb-8">
             Join our trusted platform to manage your credit score and enhance your financial health.
           </p>
-          {/* <div className="flex w-full flex-wrap gap-4 justify-center">
+          <div className="flex w-full flex-wrap gap-4 justify-center">
             <Link to="/auth/login">
               <button className="bg-orange-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-orange-700 transition-colors flex items-center gap-2">
                 Check My Score
@@ -80,14 +81,24 @@ const Landing = ()=> {
                 Dashboard
               </button>
             </Link>
-            <Link to="/reports/">
+            <Link to="/consumer-kyc">
               <button className="bg-blue-100 text-blue-800 px-6 py-3 rounded-lg font-medium hover:bg-blue-200 transition-colors">
-                Credit Reports
+              consumer-kyc
               </button>
             </Link>
-            <Link to="/advice/">
+            <Link to="/director">
               <button className="bg-blue-100 text-blue-800 px-6 py-3 rounded-lg font-medium hover:bg-blue-200 transition-colors">
-                Credit Advice
+              director
+              </button>
+            </Link>
+            <Link to="/commercicalfullcredit">
+              <button className="bg-blue-100 text-blue-800 px-6 py-3 rounded-lg font-medium hover:bg-blue-200 transition-colors">
+              commercicalfullcredit
+              </button>
+            </Link>
+            <Link to="/commercicalbasiccredit">
+              <button className="bg-blue-100 text-blue-800 px-6 py-3 rounded-lg font-medium hover:bg-blue-200 transition-colors">
+              commercicalbasiccredit
               </button>
             </Link>
             <Link to="/support/">
@@ -100,8 +111,9 @@ const Landing = ()=> {
                 Privacy Policy
               </button>
             </Link>
-          </div> */}
+          </div>
         </div>
+        <DataTable/>
 
         {/* Features Grid */}
         <div className="mt-24 grid grid-cols-1 md:grid-cols-3 gap-8">

@@ -11,11 +11,10 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     setCredentials: (state, action) => {
-      console.log(action.payload.user, "slice");
-      state.userInfo = action.payload.user;
-      localStorage.setItem("userInfo", JSON.stringify(action.payload.user));
+      state.userInfo = action.payload;
+      localStorage.setItem("userInfo", JSON.stringify(action.payload));
 
-      const expirationTime = new Date().getTime() + 30 * 24 * 60 * 60 * 1000; // 30 days
+      const expirationTime = new Date().getTime() + 5 * 60 * 60 * 1000; // 5 hours
       localStorage.setItem("expirationTime", expirationTime);
     },
 
@@ -29,3 +28,15 @@ const authSlice = createSlice({
 export const { setCredentials, logout } = authSlice.actions;
 
 export default authSlice.reducer;
+
+export const checkExpiration = () => (dispatch) => {
+  const expirationTime = JSON.parse(localStorage.getItem("expirationTime"));
+  const currentTime = new Date().getTime();
+
+  const date = new Date(expirationTime); // Convert to milliseconds by multiplying by 1000
+  const date1 = new Date(currentTime); // Convert to milliseconds by multiplying by 1000
+  console.log(date.toString(), date1.toString());
+  if (expirationTime && currentTime > expirationTime) {
+    dispatch(logout()); // Dispatch logout action if the session has expired
+  }
+};

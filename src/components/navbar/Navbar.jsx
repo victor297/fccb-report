@@ -7,10 +7,13 @@ import { Link } from 'react-router-dom';
 
 const navigation = [
   { name: 'Login', href: '/auth/login', current: true },
-  { name: 'PDF', href: '/pdf', current: false },
-  { name: 'PDF1', href: '/pdf1', current: false },
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Contact Us', href: '#', current: false },
+  { name: 'ConsumerFullCredit', href: '/ConsumerFullCredit', current: false },
+  { name: 'XSCoreConsumerFullCredit', href: '/XSCoreConsumerFullCredit', current: false },
+  { name: 'ConsumerBasicTrace', href: '/ConsumerBasicTrace', current: false },
+  { name: 'ConsumerBasicCredit', href: '/consumerbasiccredit', current: false },
+  { name: 'snapcheck', href: '/snapcheck', current: false },
+  { name: 'xscoreconsumerprime', href: 'xscoreconsumerprime', current: false },
+  { name: 'iscore', href: 'iscore', current: false },
 ]
 
 function classNames(...classes) {
@@ -41,9 +44,9 @@ src={authlogo}                className="h-8 w-auto"
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">
                 {navigation.map((item) => (
-                  <a
+                  <Link
                     key={item.name}
-                    href={item.href}
+                    to={item.href}
                     aria-current={item.current ? 'page' : undefined}
                     className={classNames(
                       item.current ? 'bg-orange-600 text-white' : 'text-blue-900 hover:bg-blue-900 hover:text-white',
@@ -51,7 +54,7 @@ src={authlogo}                className="h-8 w-auto"
                     )}
                   >
                     {item.name}
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>
