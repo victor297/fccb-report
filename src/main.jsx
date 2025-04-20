@@ -18,7 +18,6 @@ createRoot(document.getElementById('root')).render(
           style: { background: "rgb(51 65 85)", color: "#fff" },
         }}
       />
-            <NavBar/>
       <App />
     </BrowserRouter>
   </Provider>

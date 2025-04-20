@@ -2,9 +2,16 @@ import { apiSlice } from "./apiSlice";
 
 export const consumerApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
+    consumerReports: builder.mutation({
+      query: (data) => ({
+        url: `/consumerreports`, 
+        method: "POST",
+        body: data,
+      }),
+    }),
     consumerMatch: builder.mutation({
       query: (data) => ({
-        url: `/connectConsumerMatch`,
+        url: `/connectConsumerMatch`, 
         method: "POST",
         body: data,
       }),
@@ -69,6 +76,7 @@ export const consumerApiSlice = apiSlice.injectEndpoints({
 });
 
 export const {
+  useConsumerReportsMutation,
   useConsumerMatchMutation,
   useConsumerFullCreditMutation,
   useConsumerBasicTraceMutation,
